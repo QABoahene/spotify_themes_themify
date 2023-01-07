@@ -4,7 +4,6 @@ This directory holds python scripts with experimental code for data cleaning and
 
 
 ## The Track class
----
 This code defines a Python class called Track which represents a piece of music. The Track class has three attributes: name, id, and artist, which represent the name of the track, the Spotify track id, and the artist who created the track, respectively.
 
 The Track class has two methods: create_spotify_uri and ___str___. The create_spotify_uri method returns a Spotify URI (Uniform Resource Identifier) for the track, which is a string in the format spotify:track: _id_, where _id_ is the Spotify track id of the track. The ___str___ method returns a string representation of the track, which is the name of the track followed by "by" and the artist who created the track.
