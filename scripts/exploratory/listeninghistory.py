@@ -1,8 +1,9 @@
-import sys
 from spotify_client import SpotifyClient
 import os
+import sys
 
-save_path = r"/Users/qaboahene/Desktop/Personal/Themify/spotify_themes_themify/data/raw"
+from spotify_client import SpotifyClient
+
 def main():
     # Print a welcome message
     print("Welcome to the Themify testing tool!")
@@ -25,17 +26,14 @@ def main():
     # Create an instance of the SpotifyClient class
     client = SpotifyClient(authorization_token, user_id)
 
-    # get last played tracks
+    # Get the last played tracks and print them
     tracks = client.get_last_played_tracks(num_tracks)
-
     print(f"\nHere are the last {num_tracks} tracks you listened to on Spotify:")
     for index, track in enumerate(tracks):
         print(f"{index+1}- {track}")
 
-    # Convert the list of tracks to a DataFrame
+    # Convert the list of tracks to a DataFrame and save it to a CSV file
     df = client.get_tracks_dataframe(num_tracks)
-
-    # Save the DataFrame to a specific folder on the user's laptop
     save_path = input("Enter the path to save the DataFrame: ")
     df.to_csv(os.path.join(save_path, "tracks.csv"), index=False)
 
@@ -44,5 +42,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
