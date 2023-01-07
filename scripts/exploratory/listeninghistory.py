@@ -19,21 +19,21 @@ def main():
         print("Error: SPOTIFY_USER_ID environment variable not set.")
         sys.exit(1)
 
-    # Read the number of days from the command line
-    num_days = input("Enter the number of days: ")
-
-    # Convert the num_days input to an integer
-    try:
-        num_days = int(num_days)
-    except ValueError:
-        print("Invalid input: num_days must be an integer.")
-        sys.exit(1)
+    # Read the number of songs from the command line
+    num_tracks = int(input("How many tracks would you like to show? Remember, limit is 50 "))
 
     # Create an instance of the SpotifyClient class
     client = SpotifyClient(authorization_token, user_id)
 
-    # Get the tracks played by the user in the last n days
-    df = client.get_recently_played_tracks(num_days)
+    # get last played tracks
+    tracks = client.get_last_played_tracks(num_tracks)
+
+    print(f"\nHere are the last {num_tracks} tracks you listened to on Spotify:")
+    for index, track in enumerate(tracks):
+        print(f"{index+1}- {track}")
+
+    # Convert the list of tracks to a DataFrame
+    df = client.get_tracks_dataframe(num_tracks)
 
     # Save the DataFrame to a specific folder on the user's laptop
     save_path = input("Enter the path to save the DataFrame: ")
@@ -44,4 +44,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 

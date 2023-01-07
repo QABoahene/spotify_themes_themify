@@ -1,88 +1,54 @@
-import datetime
-import pandas as pd
 import requests
-from typing import Optional, Tuple
+from track import Track
+import pandas as pd
 
 class SpotifyClient:
-    def __init__(self, authorization_token: str, user_id: str):
+    """SpotifyClient performs operations using the Spotify API."""
+
+    def __init__(self, authorization_token, user_id):
         """
-        :param authorization_token: The Spotify API authorization token.
-        :param user_id: The Spotify user ID.
+        :param authorization_token (str): Spotify API token
+        :param user_id (str): Spotify user id
         """
         self._authorization_token = authorization_token
         self._user_id = user_id
 
-    def _place_get_api_request(self, url: str, params: Optional[dict] = None) -> requests.Response:
+    def get_last_played_tracks(self, limit=10):
+        """Get the last n tracks played by a user
+
+        :param limit (int): Number of tracks to get. Should be <= 50
+        :return tracks (list of Track): List of last played tracks
         """
-        Place a GET request to the specified URL using the Spotify API.
+        url = f"https://api.spotify.com/v1/me/player/recently-played?limit={limit}"
+        response = self._place_get_api_request(url)
+        response_json = response.json()
+        tracks = [Track(track["track"]["name"], track["track"]["id"], track["track"]["artists"][0]["name"]) for
+                  track in response_json["items"]]
+        return tracks
 
-        :param url: The URL to which to send the request.
-        :param params: The query parameters for the request (optional).
-        :return: The response from the server.
+    def get_tracks_dataframe(self, limit=10):
+        """Get the last n tracks played by a user as a DataFrame
+
+        :param limit (int): Number of tracks to get. Should be <= 50
+        :return df (DataFrame): DataFrame containing track name, track ID, and artist name
         """
-        headers = {
-            "Content-Type": "application/json",
-            "Authorization": f"Bearer {self._authorization_token}"
-        }
-        return requests.get(url, params=params, headers=headers)
+        # Get the list of tracks
+        tracks = self.get_last_played_tracks(limit)
 
-    def _get_time_range(self, num_days: int) -> Tuple[int, int]:
-        """
-        Get the start and end timestamps for the time range (i.e., the last n days).
+        # Create a list of dictionaries containing the track data
+        track_data = [{"name": track.name, "id": track.id, "artist": track.artist} for track in tracks]
 
-        :param num_days: The number of days for which to retrieve the tracks.
-        :return: A tuple containing the start and end timestamps.
-        """
-        now = datetime.datetime.now()
-        start_timestamp = int((now - datetime.timedelta(days=num_days)).timestamp())
-        end_timestamp = int(now.timestamp())
-        return start_timestamp, end_timestamp
+        # Convert the list of dictionaries to a DataFrame
+        df = pd.DataFrame(track_data)
 
-    def get_recently_played_tracks(self, num_days: int) -> pd.DataFrame:
-        """
-        Get the tracks played by the user in the last n days.
+        return df
 
-        :param num_days: The number of days for which to retrieve the tracks.
-        :return: A DataFrame containing the track information.
-        """
-        # Get the start and end timestamps for the time range
-        start_timestamp, end_timestamp = self._get_time_range(num_days)
-
-        # Set the API endpoint URL
-        endpoint_url = "https://api.spotify.com/v1/me/player/recently-played"
-
-        # Set the query parameters for the request
-        query_params = {
-            "before": end_timestamp,
-            "after": start_timestamp,
-        }
-
-        # Send the GET request
-        response = self._place_get_api_request(endpoint_url, params=query_params)
-
-        # Check the status code of the response
-        if response.status_code == 200:
-            # Parse the response JSON
-            response_json = response.json()
-
-            # Access the tracks data from the response
-            tracks = response_json["items"]
-
-            # Create a list of track dictionaries
-            track_list = []
-            for track in tracks:
-                track_info = {
-                    "track": track["track"]["name"],
-                    "artist": track["track"]["artists"][0]["name"]
-                }
-                track_list.append(track_info)
-
-            # Create a DataFrame from the list of tracks
-            df = pd.DataFrame(track_list, columns=["track", "artist"])
-
-            # Return the DataFrame
-            return df
-        else:
-            # Return an empty DataFrame if the request was unsuccessful
-            return pd.DataFrame()
-
+    def _place_get_api_request(self, url):
+        response = requests.get(
+            url,
+            headers={
+                "Content-Type": "application/json",
+                "Authorization": f"Bearer {self._authorization_token}"
+            }
+        )
+        return response
