@@ -1,4 +1,4 @@
-name: initial-env
+name: spotify-themify
 channels:
   - defaults
 dependencies:
