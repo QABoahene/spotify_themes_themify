@@ -50,3 +50,6 @@ class SongScraper:
             print(f"Error Occured while saving the lyrics, {e}")
 
             
+# Testing
+scraper = SongScraper("artist_name","song_name")
+scraper.save_lyrics()
