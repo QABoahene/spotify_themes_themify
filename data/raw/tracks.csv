@@ -1,22 +1,22 @@
-name,id,artist
-Drive,5GIWEv7FFxtreN2k4PQtMt,Julian Avila
-Is This Love,7jDiKzMB1RVOpziJ6Lm8W3,Corinne Bailey Rae
-Thinking 'Bout Love,42UaitnwvuKqNcD5Oa2HlD,Wild Rivers
-Tupelo Honey,77sIXAMhhX9wDqzSHM34w8,JJ Grey & Mofro
-Energizer,03MHt3leCXg1IbbOYwRej6,Cushy
-1. You Have No Idea Of My Universe - Instrumental,4ER6p3OZcdEtOz1nNcUGF0,Laykit
-Litty,3sf2wrEN7pgSqdpd5mEgD8,A P O L L O
-A Change Is Gonna Come,0KOE1hat4SIer491XKk4Pa,Sam Cooke
-Hillian St.,1okzD9TPAoGEwZvrbzQw8S,SOLDIERBEATZ
-Almost (Sweet Music),7uttm8Iurm5uK67Vr9G2Sp,Hozier
-Alright,3fVoaJNF8ALQlL0MG5XpWa,Jordan Rakei
-All Eyes on Me,2n3qO7Tt2SaLeiAw3f6svJ,Push N' Glide
-Sunday Love,5a62senIOWBGOkwAifEttN,Brady Alan
-I Was Born To Love You,3YllcvA3PW1DUwjckCVjIw,Ray LaMontagne
-Searching For A Feeling,0kGkJMm2aYS3TJdQKuacsA,Thirdstory
-A Sunday Kind Of Love,0zGLlXbHlrAyBN1x6sY0rb,Etta James
-That's Where It's At,1BIGqqQxGV9c45heFmUxLL,Sam Cooke
-Fifteen on Me,6mDTh5BkkDWlLho4ozLzDA,Bonkers Beat Club
-River,3hhbDnFUb2bicI2df6VurK,Leon Bridges
-Fluorescent,2G0Cr8GziLs65S83prZqRF,Cushy
-Beyond,1Omt5bfz1tZUCqd26HxbS0,Leon Bridges
+artist,song_title,album_name,album_type,release_date
+Julian Avila,Drive,Drive,single,2017-10-16
+Corinne Bailey Rae,Is This Love,The Love E.P.,single,2011-01-01
+Wild Rivers,Thinking 'Bout Love,Songs to Break Up To,single,2020-05-01
+JJ Grey & Mofro,Tupelo Honey,The Choice Cuts,album,2009-11-04
+Cushy,Energizer,Energizer,single,2021-10-01
+Laykit,1. You Have No Idea Of My Universe - Instrumental,Un0verse (Instrumental),single,2021-01-19
+A P O L L O,Litty,Instafamous,album,2020-03-27
+Sam Cooke,A Change Is Gonna Come,Ain't That Good News,album,1964-03-01
+SOLDIERBEATZ,Hillian St.,Garage Sounds (Deluxe),album,2022-05-22
+Hozier,Almost (Sweet Music),"Wasteland, Baby!",album,2019-03-01
+Jordan Rakei,Alright,Groove Curse,single,2014-08-15
+Push N' Glide,All Eyes on Me,Epidemic Presents: Crates (Geki Edition),compilation,2020-05-01
+Brady Alan,Sunday Love,Sunday Love,single,2018-08-31
+Ray LaMontagne,I Was Born To Love You,MONOVISION,album,2020-06-26
+Thirdstory,Searching For A Feeling,Cold Heart,album,2018-03-09
+Etta James,A Sunday Kind Of Love,At Last!,album,1960
+Sam Cooke,That's Where It's At,Keep Movin' On,compilation,1960-01-01
+Bonkers Beat Club,Fifteen on Me,Love Is Love,single,2019-09-27
+Leon Bridges,River,Coming Home (Deluxe),album,2015-06-23
+Cushy,Fluorescent,Sense,single,2020-04-10
+Leon Bridges,Beyond,Good Thing,album,2018-05-04
