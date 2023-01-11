@@ -1,6 +1,7 @@
 import csv
 import requests
 
+
 class SongScraper:
     def __init__(self, artist_name:str, song_name:str,access_token:str):
         self.artist_name = artist_name
