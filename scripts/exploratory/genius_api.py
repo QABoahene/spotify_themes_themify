@@ -28,6 +28,7 @@ class SongLyrics():
                 self.not_found.append(f'{row[artist_column]} - {row[song_column]}')
                 self.df.at[i, 'song_lyrics'] = None
                 continue
+        self.df['song_lyrics'] = self.df['song_lyrics'].str.replace('\n', ' ')
         return self.df
     
     # method to generate report
@@ -45,3 +46,5 @@ class SongLyrics():
 song_lyrics = SongLyrics(access_token, csv_file)
 df = song_lyrics.get_lyrics(artist_column, song_column)
 song_lyrics.generate_report()
+
+df.to_csv('output.csv', index = False)
