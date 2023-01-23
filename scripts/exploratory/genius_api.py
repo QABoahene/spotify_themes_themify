@@ -2,12 +2,6 @@ import pandas as pd
 import lyricsgenius
 from tqdm import tqdm
 
-# Temporary global variables
-access_token = "<YOUR_GENIUS_API_ACCESS_TOKEN>"
-csv_file = "sample_data.csv"
-artist_column = "artist"
-song_column = "song_title"
-
 class SongLyrics():
     # constructor for the class
     def __init__(self, access_token, csv_file):
@@ -40,11 +34,3 @@ class SongLyrics():
             print("\nSongs for which lyrics were not found:")
             for song in self.not_found:
                 print(song)
-
-
-#Test code
-song_lyrics = SongLyrics(access_token, csv_file)
-df = song_lyrics.get_lyrics(artist_column, song_column)
-song_lyrics.generate_report()
-
-df.to_csv('output.csv', index = False)
